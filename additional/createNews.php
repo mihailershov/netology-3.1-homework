@@ -1,3 +1,13 @@
+<?php
+
+require_once 'core.php';
+
+if (!empty($_POST['createNews'])) {
+    $functions->getNewsParametrsAndSend($_POST['title'], $_POST['author'], $_POST['content'], 'index.php');
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,12 +19,12 @@
     <link rel="stylesheet" href="style/createNews.css">
 </head>
 <body>
-<form method="POST" action="index.php">
+<form method="POST">
     <div class="wrapper">
         <a href="index.php">Назад</a>
         <div class="createNews">
             <input type="text" name="title" placeholder="Введите название статьи">
-            <input type="text" name="author" placeholder="Введите ваше имя и фамилию">
+            <input type="text" name="author" placeholder="Введите ваше имя и фамилию" value="М.И.Ершов">
             <label>Статья <br><textarea name="content" cols="30" rows="10"></textarea></label>
             <input type="submit" name="createNews" value="Создать статью">
         </div>

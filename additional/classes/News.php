@@ -6,8 +6,9 @@ class News
     private $date;
     private $content;
     private $author;
-    private $comments;
+    private $comments = [];
 
+    /*
     public function getAllNewsParametrs()
     {
         return [
@@ -17,21 +18,37 @@ class News
             'author' => $this->author,
             'comments' => $this->comments
         ];
-    }
+    }*/
 
-    public function setContent($content)
+    public function getTitle()
     {
-        return $this->content = $content;
+        return $this->title;
     }
 
-    public function setComments($comment) {
-        return $this->comments[] = $comment;
+    public function getDate()
+    {
+        return $this->date;
     }
 
-    function __construct($title, $author, $date)
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    public function getComments($comments) {
+        return $this->comments = $comments;
+    }
+
+    function __construct($title, $author, $date, $content)
     {
         $this->title = $title;
         $this->date = $date;
         $this->author = $author;
+        $this->content = $content;
     }
 }
