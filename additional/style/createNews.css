@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+    background-color: lightgrey;
+    padding: 20px;
+}
+.createNews {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: auto;
+}
+.createNews * {
+    width: 100%;
+}
+textarea {
+    resize: none;
+}
+a {
+    padding: 10px;
+    color: darkslategrey;
+    text-decoration: none;
+}
+a:hover {
+    color: black;
+}

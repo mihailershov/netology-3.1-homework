@@ -5,7 +5,8 @@ class Duck
     // Просто попробовать
     private $isPet;
 
-    public function setIsPetValue($value = false) {
+    public function setIsPetValue($value = false)
+    {
         $this->isPet = $value;
     }
 

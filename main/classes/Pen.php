@@ -6,7 +6,8 @@ class Pen
     public $inkColor;
     public $priceInRubles;
 
-    public function isSuitableForEGE() {
+    public function isSuitableForEGE()
+    {
         return $this->inkColor == 'black' || $this->inkColor == 'dark-blue';
     }
 }

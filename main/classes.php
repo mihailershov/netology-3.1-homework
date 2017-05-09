@@ -48,11 +48,10 @@ $notebook = new Product('Lenovo', 55000);
 <h1>Инкапсуляция</h1>
 <p>Инкапсуляция - это когда мы объединяем в одну сущность участки кода, относящиеся к одному контексту, и закрываем
     доступ к наиболее важным свойствам и методам.</p>
-<h2>Плюсы объектов</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> At corporis cumque deleniti dolorum eaque eos ex fugiat
-    impedit ipsam nemo nisi <br>optio perferendis quae quaerat qui, reprehenderit similique suscipit veritatis.</p>
-<h2>Минусы объектов</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br> At corporis cumque deleniti dolorum eaque eos ex fugiat
-    impedit ipsam nemo nisi <br>optio perferendis quae quaerat qui, reprehenderit similique suscipit veritatis.</p>
+<h1>Об объектах</h1>
+<p>Основываясь на использовании объектов в этом д/з, стало понятно, что плюсом является логичность и читабельность всего кода.</p>
+<p>Но в тоже время, чтобы ими пользоваться, надо очень четко понимать их работу и не запутаться при их большом количестве.</p>
+<p>Естественно, почитал и на сторонних ресурсах о плюсах и минусах использования классов, но пока ограничюсь теми фактами, которые сам лично заметил при работе с классами.</p>
+
 </body>
 </html>
