@@ -51,7 +51,7 @@ class Functions
     {
         $objectAllComments = [];
         foreach ($allComments as $theComment) {
-            $comment = new Comment($theComment['author'], $theComment['content'], date('d-m-Y H:i'), $theComment['newsID']);
+            $comment = new Comment($theComment['author'], $theComment['content'], $theComment['date'], $theComment['newsID']);
             $objectAllComments[] = $comment;
         }
         return $objectAllComments;
