@@ -5,23 +5,33 @@ class Comment
     private $author;
     private $content;
     private $date;
-    private $newsID;
+    private $newsTitle;
 
-    public function getAllCommentParametrs()
+    public function getAuthor()
     {
-        return [
-            'author' => $this->author,
-            'content' => $this->content,
-            'date' => $this->date,
-            'newsID' => $this->newsID
-        ];
+        return $this->author;
     }
 
-    public function __construct($author, $content, $date, $newsID)
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getNewsTitle()
+    {
+        return $this->newsTitle;
+    }
+
+    public function __construct($author, $content, $date, $newsTitle)
     {
         $this->author = $author;
         $this->content = $content;
         $this->date = $date;
-        $this->newsID = $newsID;
+        $this->newsTitle = $newsTitle;
     }
 }

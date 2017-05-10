@@ -39,7 +39,7 @@ h2, h4 {
     margin: 0;
 }
 
-.news div {
+.news > div {
     padding: 20px;
     border-bottom: 1px solid #000;
     text-align: left;
@@ -61,4 +61,11 @@ form p {
 
 textarea {
     resize: none;
+}
+
+.none-news {
+    text-align: center;
+}
+
+.comment {
 }
