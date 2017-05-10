@@ -2,6 +2,7 @@
 
 class Functions
 {
+    // Функции для работы с новостью
     public function getInputNewsValues($content, $title, $author)
     {
         $content = nl2br($content);
@@ -47,11 +48,13 @@ class Functions
         return $objectsAllNews;
     }
 
+
+    // Функции для работы с комментариями
     public function createAllComments($allComments)
     {
         $objectAllComments = [];
         foreach ($allComments as $theComment) {
-            $comment = new Comment($theComment['author'], $theComment['content'], date('d-m-Y H:i'), $theComment['newsID']);
+            $comment = new Comment($theComment['author'], $theComment['content'], $theComment['date'], $theComment['newsID']);
             $objectAllComments[] = $comment;
         }
         return $objectAllComments;

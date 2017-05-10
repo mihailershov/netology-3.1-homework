@@ -3,12 +3,12 @@
 // Подключаем классы
 require_once 'core.php';
 
-$allNews = $allComments = $objectsAllNews = $objectsAllComments = [];
-if (file_exists('data/news.json')) $allNews = json_decode(file_get_contents('data/news.json'), true);
-if (file_exists('data/comments.json')) $allComments = json_decode(file_get_contents('data/comments.json'), true);
+$allNews = file_exists('data/news.json') ? json_decode(file_get_contents('data/news.json'), true) : [];
+$allComments = file_exists('data/comments.json') ? json_decode(file_get_contents('data/comments.json'), true) : [];
 
 // Если пришел post запрос с новостью - поместить ее в json
-if (stristr($_SERVER['HTTP_REFERER'], 'createNews.php') && !empty($_SESSION['news'])) {
+$referer = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+if (stristr($referer, 'createNews.php') && !empty($_SESSION['news'])) {
     $allNews = $functions->pushNewsInFile($_SESSION['news']);
     header('refresh: 0');
 }
@@ -16,6 +16,8 @@ if (stristr($_SERVER['HTTP_REFERER'], 'createNews.php') && !empty($_SESSION['new
 
 if (!empty($allNews)) {
     $objectsAllNews = $functions->createAllNews($allNews);
+} else {
+    $objectsAllNews = [];
 }
 
 
@@ -24,7 +26,8 @@ if (!empty($_POST['createComment']) && !empty($objectsAllNews)) {
     $commentParametrs = [
         'author' => $_POST['author'],
         'content' => $_POST['content'],
-        'newsID' => $_POST['newsID']
+        'newsID' => $_POST['newsID'],
+        'date' => date('d-m-Y H:i')
     ];
     $allComments = $functions->pushCommentInFile($allComments, $commentParametrs);
     header('refresh: 0');
@@ -32,6 +35,8 @@ if (!empty($_POST['createComment']) && !empty($objectsAllNews)) {
 
 if (!empty($allComments)) {
     $objectsAllComments = $functions->createAllComments($allComments);
+} else {
+    $objectsAllComments = [];
 }
 
 
