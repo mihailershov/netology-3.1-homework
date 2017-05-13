@@ -74,3 +74,10 @@ form p {
 textarea {
     resize: none;
 }
+
+.none-news {
+    text-align: center;
+}
+
+.comment {
+}

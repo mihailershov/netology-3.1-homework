@@ -1,42 +1,14 @@
 <?php
 
-class Comment
+final class Comment extends TheNewsTemplate
 {
-    private $author;
-    private $content;
-    private $date;
+    protected $newsTitle;
 
-    /*
-    public function getAllCommentParametrs()
-    {
-        return [
-            'author' => $this->author,
-            'content' => $this->content,
-            'date' => $this->date
-        ];
-    }*/
-
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-
-    public function __construct($author, $content, $date, $newsID)
+    public function __construct($author, $content, $date, $newsTitle)
     {
         $this->author = $author;
         $this->content = $content;
         $this->date = $date;
-        $this->newsID = $newsID;
+        $this->newsTitle = $newsTitle;
     }
 }

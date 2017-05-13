@@ -1,9 +1,9 @@
 <?php
 
-
 class Functions
 {
-    public function getNewsParametrsAndSend($title, $author, $content, $location)
+    // Функции для работы с новостью
+    public function getInputNewsValues($content, $title, $author)
     {
         $content = nl2br($content);
         $date = date('d-m-Y H:i');
@@ -13,35 +13,74 @@ class Functions
             'title' => $title,
             'author' => $author
         ];
-        header("Location: $location");
     }
 
-    public function getNewsAndPutIntoTheFile($session, $filePath = 'data/news.json')
+    public function pushNewsInFile($session, $filepath = 'data/news.json')
     {
-        if (stristr($_SERVER['HTTP_REFERER'], 'createNews.php') && !empty($session)) {
+        // Читаем json файл с новостями
+        $allNews = json_decode(file_get_contents($filepath), true);
 
-            $numberOfNews = (!empty($allNews)) ? count($allNews) : 0;
+        // Количество новостей
+        $numberOfNews = count($allNews);
 
-            $jsonNews[$numberOfNews]['title'] = $session['title'];
-            $jsonNews[$numberOfNews]['date'] = $session['date'];
-            $jsonNews[$numberOfNews]['author'] = $session['author'];
-            $jsonNews[$numberOfNews]['content'] = $session['content'];
+        // Определяем основные параметры статьи
+        $allNews[$numberOfNews]['title'] = $session['title'];
+        $allNews[$numberOfNews]['author'] = $session['author'];
+        $allNews[$numberOfNews]['content'] = $session['content'];
+        $allNews[$numberOfNews]['date'] = $session['date'];
 
-            $file = fopen($filePath, 'w');
-            fwrite($file, json_encode($jsonNews));
-            fclose($file);
+        // Записываем в файл
+        $file = fopen($filepath, 'w');
+        fwrite($file, json_encode($allNews));
+        fclose($file);
+
+        return json_decode(file_get_contents('data/news.json'), true);
+
+    }
+
+    public function createAllNews($allNews)
+    {
+        $objectsAllNews = [];
+        foreach ($allNews as $theNews) {
+            $news = new News($theNews['title'], $theNews['author'], $theNews['date'], $theNews['content']);
+            array_unshift($objectsAllNews, $news);
         }
+        return $objectsAllNews;
     }
 
-    public function createNewsClassFromJsonParametrs($json)
+
+    // Функции для работы с комментариями
+    public function createAllComments($allComments)
     {
-        if (!empty($json)) {
-            foreach ($json as $theNews) {
-                $news = new News($theNews['title'], $theNews['author'], $theNews['date'], $theNews['content']);
-                $allNews = [];
-                array_unshift($allNews, $news);
+        $objectAllComments = [];
+        foreach ($allComments as $theComment) {
+            $comment = new Comment($theComment['author'], $theComment['content'], $theComment['date'], $theComment['newsID']);
+            $objectAllComments[] = $comment;
+        }
+        return $objectAllComments;
+    }
+
+    public function pushCommentInFile($commentsArray, $commentArray, $filepath = 'data/comments.json')
+    {
+        $numberOfComments = count($commentsArray);
+        $commentsArray[$numberOfComments] = $commentArray;
+        $file = fopen($filepath, 'w');
+        fwrite($file, json_encode($commentsArray));
+        fclose($file);
+
+        return json_decode(file_get_contents('data/comments.json'), true);
+    }
+
+    public function combineNewsAndComments($news, $comments)
+    {
+        foreach ($news as $key => $theNews) {
+            foreach ($comments as $comment) {
+                if ($theNews->getPart('title') == $comment->getPart('newsTitle')) {
+                    $theNews->setComment($comment);
+                }
             }
         }
-        return $allNews;
+        return $news;
     }
+
 }

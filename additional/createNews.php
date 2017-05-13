@@ -3,11 +3,11 @@
 require_once 'core.php';
 
 if (!empty($_POST['createNews'])) {
-    $functions->getNewsParametrsAndSend($_POST['title'], $_POST['author'], $_POST['content'], 'index.php');
+    $functions->getInputNewsValues($_POST['content'], $_POST['title'], $_POST['author']);
+    header("Location: index.php");
 }
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
