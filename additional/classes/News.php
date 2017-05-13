@@ -1,6 +1,6 @@
 <?php
 
-final class News extends TheNewsTemplate
+final class News extends TheNewsTemplate implements NewsInterface
 {
     protected $title;
     protected $comments = [];

@@ -1,6 +1,6 @@
 <?php
 
-class TheNewsTemplate
+abstract class TheNewsTemplate implements TheNewsTemplateInterface
 {
     protected $author;
     protected $content;
