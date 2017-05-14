@@ -1,7 +1,8 @@
 <?php
 
-class Functions implements FunctionsInterface
+class Functions implements NewsFunctionsInterface, CommentFunctionsInterface
 {
+    // Функции для работы с новостями
     public function getInputNewsValues($content, $title, $author)
     {
         $content = nl2br($content);
